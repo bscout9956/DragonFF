@@ -32,7 +32,7 @@ class ext_2dfx_importer:
 
     """ Helper class for 2dfx importing """
     # Basically I didn't want to have such functions in
-    # the main dfff_importer, as the functions wouldn't
+    # the main dff_importer, as the functions wouldn't
     # make any sense being there.
     
     #######################################################

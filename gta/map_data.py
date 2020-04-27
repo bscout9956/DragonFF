@@ -444,6 +444,12 @@ SA_IPL = (
     ('DATA\\MAPS\\LA\\LAwn.IPL',           'LAwn', ''),
     ('DATA\\MAPS\\LA\\LAw2.IPL',           'LAw2', ''),
     ('DATA\\MAPS\\LA\\LAhills.IPL',        'LAhills', ''),
+    ('DATA\\MAPS\\las_stream0.ipl',        'las_stream0', ''),
+    ('DATA\\MAPS\\las_stream1.ipl',        'las_stream1', ''),
+    ('DATA\\MAPS\\las_stream2.ipl',        'las_stream2', ''),
+    ('DATA\\MAPS\\las_stream3.ipl',        'las_stream3', ''),
+    ('DATA\\MAPS\\las_stream4.ipl',        'las_stream4', ''),
+    ('DATA\\MAPS\\las_stream5.ipl',        'las_stream5', ''),
     ('DATA\\MAPS\\SF\\SFn.IPL',            'SFn', ''),
     ('DATA\\MAPS\\SF\\SFs.IPL',            'SFs', ''),
     ('DATA\\MAPS\\SF\\SFse.IPL',           'SFse', ''),
@@ -483,7 +489,7 @@ SA_IPL = (
     ('DATA\\MAPS\\occluveg.ipl',           'occluveg', ''),
     ('DATA\\MAPS\\occluLA.ipl',            'occluLA', ''),
     ('DATA\\MAPS\\occluint.ipl',           'occluint', ''),
-    ('DATA\\MAPS\\audiozon.ipl',           'audiozon', '')
+    ('DATA\\MAPS\\audiozon.ipl',           'audiozon', '')    
 )
 
 LCS_IPL = (
