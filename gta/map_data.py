@@ -572,7 +572,9 @@ SA_IPL = (
     ('DATA\\MAPS\\occluveg.ipl',           'occluveg', ''),
     ('DATA\\MAPS\\occluLA.ipl',            'occluLA', ''),
     ('DATA\\MAPS\\occluint.ipl',           'occluint', ''),
-    ('DATA\\MAPS\\audiozon.ipl',           'audiozon', '')    
+    ('DATA\\MAPS\\audiozon.ipl',           'audiozon', ''),
+    # Random/Misc IPLs -- Added by bscout9956
+    ('DATA\\MAPS\\truthsfarm.ipl',         'truthsfarm', ''),
 )
 
 LCS_IPL = (
