@@ -588,7 +588,7 @@ SA_IPL = (
     ('DATA\\MAPS\\interior\\stadint.IPL',  'stadint', ''),
     ('DATA\\MAPS\\interior\\savehous.IPL', 'savehous', ''),
     ('DATA\\MAPS\\leveldes\\levelmap.IPL', 'levelmap', ''),
-    ('DATA\\MAPS\\levelmap_stream0.ipl',   'levelmap_stream0.ipl', ''),
+    ('DATA\\MAPS\\levelmap_stream0.ipl',   'levelmap_stream0', ''),
     ('DATA\\MAPS\\leveldes\\seabed.IPL',   'seabed', ''),
     ('DATA\\MAPS\\paths.ipl',              'paths', ''),
     ('DATA\\MAPS\\paths2.ipl',             'paths2', ''),
@@ -602,7 +602,6 @@ SA_IPL = (
     ('DATA\\MAPS\\occluLA.ipl',            'occluLA', ''),
     ('DATA\\MAPS\\occluint.ipl',           'occluint', ''),
     ('DATA\\MAPS\\audiozon.ipl',           'audiozon', ''),
-    # Random/Misc IPLs -- Added by bscout9956
     ('DATA\\MAPS\\truthsfarm.ipl',         'truthsfarm', ''),
 )
 
