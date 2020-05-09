@@ -560,6 +560,7 @@ SA_IPL = (
     ('DATA\\MAPS\\interior\\stadint.IPL',  'stadint', ''),
     ('DATA\\MAPS\\interior\\savehous.IPL', 'savehous', ''),
     ('DATA\\MAPS\\leveldes\\levelmap.IPL', 'levelmap', ''),
+    ('DATA\\MAPS\\levelmap_stream0.ipl',   'levelmap_stream0.ipl', ''),
     ('DATA\\MAPS\\leveldes\\seabed.IPL',   'seabed', ''),
     ('DATA\\MAPS\\paths.ipl',              'paths', ''),
     ('DATA\\MAPS\\paths2.ipl',             'paths2', ''),
