@@ -20,10 +20,8 @@ import mathutils
 import os
 import os.path
 
-from . import dff
+from ..gtaLib import dff
 from .col_exporter import export_col
-from . import col
-from .importer_common import set_object_mode
 
 #######################################################
 def clear_extension(string):
@@ -67,7 +65,7 @@ class material_helper:
                 
                 texture.name = clear_extension(
                     node_label
-                    if node_label in image_name and node_label is not ""
+                    if node_label in image_name and node_label != ""
                     else image_name
                 )
                 return texture
@@ -103,9 +101,7 @@ class material_helper:
     def get_normal_map(self):
 
         bump_texture = None
-        diffuse_texture = dff.Texture()
-        
-        diffuse_texture.filters = 0
+        height_texture = dff.Texture()
 
         if not self.material.dff.export_bump_map:
             return None
@@ -122,27 +118,17 @@ class material_helper:
 
                 bump_texture.name = clear_extension(
                     node_label
-                    if node_label in image_name and node_label is not ""
+                    if node_label in image_name and node_label != ""
                     else image_name
                 )
                 intensity = self.principled.normalmap_strength
 
-        # 2.79
-        for slot in self.material.texture_slots:
-
-            bump_texture = dff.Texture()
-            
-            if slot.texture.use_normal_map:
-                bump_texture.name = clear_extension(slot.texture.image.name)
-                intensity = slot.normal_factor
-                return (bump_texture, slot.normal_factor)
-
-        diffuse_texture.name = self.material["bump_map_tex"]
-        if diffuse_texture.name == "":
-            diffuse_texture = None
+        height_texture.name = self.material.dff.bump_map_tex
+        if height_texture.name == "":
+            height_texture = None
 
         if bump_texture is not None:
-            return dff.BumpMapFX(intensity, diffuse_texture, bump_texture)
+            return dff.BumpMapFX(intensity, height_texture, bump_texture)
 
         return None
 
@@ -187,6 +173,14 @@ class material_helper:
             props.reflection_intensity
         )
 
+    #######################################################
+    def get_user_data(self):
+
+        if 'dff_user_data' not in self.material:
+            return None
+        
+        return dff.UserData.from_mem(
+                self.material['dff_user_data'])
     
     #######################################################
     def get_uv_animation(self):
@@ -216,9 +210,13 @@ class material_helper:
 
                         # Offset in the UV array
                         uv_offset = {
-                            'nodes["Mapping"].translation': 4,
-                            'nodes["Mapping"].scale': 1,
+                            'nodes["Mapping"].inputs[1].default_value': 4,
+                            'nodes["Mapping"].inputs[3].default_value': 1,
                         }
+
+                        if curve.data_path not in uv_offset:
+                            continue
+                        
                         off = uv_offset[curve.data_path]
                         
                         for i, frame in enumerate(curve.keyframe_points):
@@ -319,6 +317,9 @@ class dff_exporter:
             matrix.to_3x3().transposed()
         )
 
+        if "dff_user_data" in obj:
+            frame.user_data = dff.UserData.from_mem(obj["dff_user_data"])
+
         id_array = self.bones if is_bone else self.frames
         
         if set_parent and obj.parent is not None:
@@ -357,6 +358,7 @@ class dff_exporter:
             material.add_plugin('env_map', helper.get_environment_map())
             material.add_plugin('spec', helper.get_specular_material())
             material.add_plugin('refl', helper.get_reflection_material())
+            material.add_plugin('udata', helper.get_user_data())
 
             anim = helper.get_uv_animation()
             if anim:
@@ -641,6 +643,9 @@ class dff_exporter:
             geometry.extensions['skin'] = skin
         if extra_vert:
             geometry.extensions['extra_vert_color'] = extra_vert
+        if "dff_user_data" in obj.data:
+            geometry.extensions['user_data'] = dff.UserData.from_mem(
+                obj.data['dff_user_data'])
 
         try:
             if obj.dff.pipeline != 'NONE':
